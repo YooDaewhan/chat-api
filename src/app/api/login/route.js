@@ -17,11 +17,11 @@ export async function POST(req) {
       }
     );
   }
-
+  const user = rows[0]; // 여기 꼭 추가
   return new Response(
     JSON.stringify({
       success: true,
-      user: {
+      users: {
         id: user.id,
         email: user.email,
         name: user.name, // name 컬럼이 있다면
