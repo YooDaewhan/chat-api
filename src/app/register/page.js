@@ -9,11 +9,14 @@ export default function RegisterPage() {
 
   const handleRegister = async () => {
     try {
-      const res = await fetch("/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      const res = await fetch(
+        "http://ec2-3-38-180-108.ap-northeast-2.compute.amazonaws.com:3000/api/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const data = await res.json();
 
