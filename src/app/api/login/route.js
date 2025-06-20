@@ -9,7 +9,7 @@ export async function POST(req) {
     [email, password]
   );
 
-  // 로그인 실패
+  // ✅ 먼저 존재 여부 확인
   if (!rows || rows.length === 0) {
     return new Response(
       JSON.stringify({ success: false, message: "로그인 실패" }),
@@ -22,7 +22,7 @@ export async function POST(req) {
     );
   }
 
-  // ✅ 여기서만 rows[0] 접근
+  // ✅ 이 부분은 성공일 때만 실행
   const user = rows[0];
 
   return new Response(
