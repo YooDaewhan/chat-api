@@ -1,7 +1,6 @@
 // src/app/api/login/route.js
 import { db } from "@/lib/db";
 
-// POST 요청 처리
 export async function POST(req) {
   const { email, password } = await req.json();
 
@@ -10,7 +9,8 @@ export async function POST(req) {
     [email, password]
   );
 
-  if (rows.length === 0) {
+  // 로그인 실패
+  if (!rows || rows.length === 0) {
     return new Response(
       JSON.stringify({ success: false, message: "로그인 실패" }),
       {
@@ -22,6 +22,7 @@ export async function POST(req) {
     );
   }
 
+  // ✅ 여기서만 rows[0] 접근
   const user = rows[0];
 
   return new Response(
@@ -42,7 +43,6 @@ export async function POST(req) {
   );
 }
 
-// OPTIONS 요청 처리 (CORS preflight)
 export async function OPTIONS() {
   return new Response(null, {
     status: 204,
